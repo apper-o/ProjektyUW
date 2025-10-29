@@ -1,2 +1,2 @@
-# ProjektyUW
+# ProjektyUwU
 Zbiór zadanek z WDP*
