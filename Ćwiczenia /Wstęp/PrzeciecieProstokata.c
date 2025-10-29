@@ -28,7 +28,7 @@ void oblicz(const fig *A, const fig *B, fig *C)
 int main()
 {
     fig A, B;
-    int ok = scanf("%d%d%d%d%d%d%d%d", &A.a.x, &A.a.y, &A.b.x, &A.b.y, &B.a.x, &B.a.y, &B.b.x, &B.b.y);
+    scanf("%d%d%d%d%d%d%d%d", &A.a.x, &A.a.y, &A.b.x, &A.b.y, &B.a.x, &B.a.y, &B.b.x, &B.b.y);
     fig wynik;
     oblicz(&A, &B, &wynik);
     if(!poprawny(&wynik.a, &wynik.b))
