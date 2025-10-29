@@ -17,8 +17,8 @@ int poprawny(const punkt *a, const punkt *b)
 
 void oblicz(const fig *A, const fig *B, fig *C)
 {
-    punkt a = (punkt){B->a.x, min(A->b.y, B->a.y)};
-    punkt b = (punkt){A->b.x, min(A->b.y, B->b.y)};
+    punkt a = (punkt){max(A->a.x, B->a.x), max(A->a.y, B->a.y)};
+    punkt b = (punkt){min(A->b.x, B->b.x), min(A->b.y, B->b.y)};
     if(poprawny(&a, &b))
         *C = (fig){a, b};
     else
@@ -29,20 +29,11 @@ int main()
 {
     fig A, B;
     int ok = scanf("%d%d%d%d%d%d%d%d", &A.a.x, &A.a.y, &A.b.x, &A.b.y, &B.a.x, &B.a.y, &B.b.x, &B.b.y);
-    if(!ok)
-        return 0;
-    if(A.a.x > B.a.x)    
-    {
-        fig C = A;
-        A = B;
-        B = C;
-    }
     fig wynik;
     oblicz(&A, &B, &wynik);
     if(!poprawny(&wynik.a, &wynik.b))
         printf("NIE MA PRZECIECIA\n");
     else
         printf("(%d, %d), (%d, %d)", wynik.a.x, wynik.a.y, wynik.b.x, wynik.b.y);
-
     return 0;
 }
