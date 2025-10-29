@@ -1,2 +1,2 @@
 # ProjektyUW
-Zbiór zadanek z JSiM'u
+Zbiór zadanek z WDP*
