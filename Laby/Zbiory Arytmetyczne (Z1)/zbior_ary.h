@@ -1,19 +1,33 @@
 #ifndef _ZBIOR_ARY_H_
 #define _ZBIOR_ARY_H_
-
+#define uint unsigned
 #include <stdbool.h>
 
+#define max(a, b) ((a) > (b) ? (a) : (b))
+#define min(a, b) ((a) < (b) ? (a) : (b))
 
 typedef struct {
-    int a; 
-    int b;
+    long long a; 
+    long long b;
 } ciag;
 
 typedef struct zbior_ary {
-    ciag* tab;         // Wskaźnik na tablicę ciągów
-    unsigned rozmiar;    // Liczba ciągów w tablicy
-    unsigned pojemnosc;  // Zaalokowana pojemność tablicy
+    ciag* tab;         /* Wskaznik na tablice ciagow */
+    unsigned rozmiar;    /* Liczba ciagow w tablicy */
+    unsigned pojemnosc;  /* Zaalokowana pojemnosc tablicy */
 } zbior_ary;
+
+/* Funkcja pomocnicza, ktora zwraca dodania reszte z dzielenia liczby a przez q */
+long long mod(long long a);
+
+/* Funkcja pomocniczna do porownywania ciagow. Zwraca True, jeżeli ciąg a jest mniejszy niż ciag b */
+long long mniejszy(ciag a, ciag b);
+
+/* Funkcja pomocnicza do tworzenia pustego zbioru z pojemnoscia okreslona przez parametr 'pojemnosc'. */
+zbior_ary generuj(uint pojemnosc);
+
+/* Funkcja pomocnicza do dodawania ciagu do zbioru */
+void dodaj(zbior_ary *A, ciag c);
 
 /* Najlepiej nie modyfikowac nic ponizej. */
 
