@@ -22,7 +22,7 @@ int rozne(int n, int a[])
 int minimum(int n, int a[])
 {
     int l = 0, r = n - 1;
-    while(l < r)
+    while(l + 1 < r)
     {
         int m1 = l + (r - l) / 3, m2 = r - (r - l) / 3;
         if(a[m1] < a[m2])
@@ -35,7 +35,7 @@ int minimum(int n, int a[])
             r = m2;
         }
     }
-    return a[l];
+    return min(a[l], a[l+1]);
 }
 
 int main()
