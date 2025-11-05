@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#define min(a, b) ((a) < (b) ? (a) : (b))
+ 
+/* O(n) */
 int* zsumuj(int n, int a[])
 {
     int *b = malloc(n * sizeof(int));
@@ -10,7 +12,7 @@ int* zsumuj(int n, int a[])
     for(int i=n-2;i>=0;i--)
     {
         b[i] = b[i+1];
-        for(int j=a[i]-1;j<a[i+1]-1;j++)
+        for(int j=a[i]-1;j<min(a[i+1]-1, n);j++)
             b[i] += a[j];
     }
     return b;
