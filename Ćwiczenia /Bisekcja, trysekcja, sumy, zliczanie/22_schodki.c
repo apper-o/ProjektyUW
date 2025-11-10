@@ -9,7 +9,7 @@ int solve(int *arr, int n, int k)
     int *cnt = malloc((k+2) * sizeof(int));
     int res = 0;
     for(int i=0;i<=k;i++)
-        cnt[i]=0;
+        cnt[i] = 0;
     for(int i=n-1;i>=0;i--)
     {
         int x = arr[i];
@@ -24,10 +24,10 @@ int solve(int *arr, int n, int k)
 }
 
 int main()
-{
+{  
     int n, k; /* n = liczba cyfr w tablicy, k = zakres */
     scanf("%d%d", &n, &k);
-    int *arr = malloc(n * sizeof(int));
+    int *arr = malloc(n * sizeof(int)); 
     for(int i=0;i<n;i++)
         scanf("%d", &arr[i]);
     printf("%d", solve(arr, n, k));
