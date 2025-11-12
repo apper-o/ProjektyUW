@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <assert.h>
+
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define max(a, b) ((a) > (b) ? (a) : (b))
 
 const int NO_SOLUTION = -1;
 const int NOT_FOUND = -1;
 
-/* Stores the infromation about a motel */
+/* Stores the information about a motel */
 typedef struct{
     int type;
     int dist;
@@ -43,7 +45,7 @@ int calculate(motel *arr, pair *pref, pair* suff, int n, int mode)
             }
             else 
             {
-                /* If the best motel on the left is the same as on the right then it is neccesary to use second best*/
+                /* If the best motel on the left is the same as on the right then it is necessary to use second best*/
                 if(pref[i].sec_best != NOT_FOUND)
                 {
                     if(mode)
@@ -155,15 +157,30 @@ int solve_max_min(motel *arr, pair *pref, pair *suff, int n)
 int main()
 {
     int n;
-    scanf("%d", &n);
-    motel *arr = (motel*)malloc(n * sizeof(motel)); 
+    if(scanf("%d", &n) != 1)
+        return 1;
+    assert(n>0);
+    motel *arr = (motel*)malloc((size_t)n * sizeof(motel)); 
     /* pref[i] = indices of the best and second best motel on the i-th pefix */
-    pair *pref = (pair*)malloc(n * sizeof(pair)); 
+    pair *pref = (pair*)malloc((size_t)n * sizeof(pair)); 
     /* suff[i] = indices of the best and second best motel on the i-th suffix */
-    pair *suff = (pair*)malloc(n * sizeof(pair)); 
+    pair *suff = (pair*)malloc((size_t)n * sizeof(pair)); 
+    if(arr == NULL || pref == NULL || suff == NULL)
+    {
+        free(arr);
+        free(pref);
+        free(suff);
+        return 1;
+    }
     for(int i=0;i<n;i++)
-        scanf("%d%d", &arr[i].type, &arr[i].dist);
-    int resmx = solve_max_min(arr, pref, suff, n), resmn = solve_min_max(arr, pref, suff, n);
+        if(scanf("%d%d", &arr[i].type, &arr[i].dist) != 2)
+            return 1;
+    int resmx=NO_SOLUTION, resmn;
+    if(n>2)
+    {
+        resmx = solve_max_min(arr, pref, suff, n);
+        resmn = solve_min_max(arr, pref, suff, n);
+    }
     if(resmx == NO_SOLUTION)
         printf("%d %d", 0, 0);
     else
